@@ -4,27 +4,23 @@
   roles:
     - role: osp_facts
 
-- name: base config 
-  hosts: "{{ item }}"
-  roles:
-    - role: configuration
-  with_items:
-    - [frontends, apps, appdbs]
-
 - name: deploy haproxy
   hosts: frontends
   roles:
+    - role: configuration
     - role: deploy-haproxy
 
 - name: deploy tomcat
   hosts: apps
   roles:
+    - role: configuration
     - role: deploy-tomcat
 
 - name: deploy postgres
   become: true
   hosts: appdbs
   roles:
+    - role: configuration
     - { role: geerlingguy.postgresql }
 
 - name: deploy apache
