@@ -1,0 +1,4 @@
+- name: three tier apps check
+  hosts: jumpbox
+  roles:
+   - role: check

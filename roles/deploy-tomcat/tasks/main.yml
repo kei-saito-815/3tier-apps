@@ -7,10 +7,12 @@
       name: tomcat
       enabled: yes
 
-  - name: create ansible tomcat directory
+  - name: create ansible tomcat directory root
     file:
       path: /usr/share/tomcat/webapps/ROOT
       state: directory
+
+  - name: create ansible tomcat directory
     file:
       path: /usr/share/tomcat/webapps/ansible
       state: directory
