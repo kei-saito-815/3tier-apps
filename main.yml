@@ -5,12 +5,14 @@
     - role: osp_facts
 
 - name: deploy haproxy
+  become: true
   hosts: frontends
   roles:
     - role: configuration
     - role: deploy-haproxy
 
 - name: deploy tomcat
+  become: true
   hosts: apps
   roles:
     - role: configuration
@@ -24,6 +26,7 @@
     - { role: geerlingguy.postgresql }
 
 - name: deploy apache
+  become: true
   hosts: apps
   roles:
   - role: deploy-apache
