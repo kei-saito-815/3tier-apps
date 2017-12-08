@@ -1,0 +1,28 @@
+---
+- name: base config 
+  hosts: all
+  roles:
+    - role: configuration
+
+- name: deploy haproxy
+  hosts: frontends
+  vars: 
+    - GUID: 05aa
+  roles:
+    - role: deploy-haproxy
+
+- name: deploy tomcat
+  hosts: apps
+  roles:
+    - role: deploy-tomcat
+
+- name: deploy postgres
+  become: true
+  hosts: appdbs
+  roles:
+    - { role: geerlingguy.postgresql }
+
+- name: deploy apache
+  hosts: apps
+  roles:
+  - role: deploy-apache
