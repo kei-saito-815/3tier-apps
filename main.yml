@@ -9,7 +9,7 @@
   roles:
     - role: configuration
   with_items:
-    [frontends, apps, appdbs]
+    - [frontends, apps, appdbs]
 
 - name: deploy haproxy
   hosts: frontends
